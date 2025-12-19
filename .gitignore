@@ -1,0 +1,72 @@
+# Environment variables
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints
+
+# Output files (large datasets)
+output/*.csv
+output/*.json
+output/parallel_*/
+output/agentic_checkpoint.csv
+output/gpt52_checkpoint.csv
+
+# Logs
+*.log
+*.txt
+scripts/*_log.txt
+test/*_log.txt
+
+# Data files (optional - include if you want to share sample data)
+# data/*
+
+# Test results
+test/model_comparison_results.json
+test/*_partial.csv
+
+# Cursor AI project files
+.cursor/
+terminals/
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+

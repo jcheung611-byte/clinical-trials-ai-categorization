@@ -1,0 +1,8 @@
+nct_id,gpt_5_2_tier,agentic_tier,mini_original_prompt,mini_enhanced_prompt,prompt_matters,model_matters
+NCT06445062,1.5,2.0,2,2,False,True
+NCT06166836,2.0,4.0,2,4,True,False
+NCT06497985,2.0,3.0,3,3,False,True
+NCT05186116,4.0,1.0,3,3,False,True
+NCT06876142,4.0,2.0,4,2,True,False
+NCT06328439,4.0,3.0,2,3,True,True
+NCT06878612,4.0,3.0,3,3,False,True
