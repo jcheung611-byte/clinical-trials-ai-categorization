@@ -1,0 +1,502 @@
+# Cursor AI Assistant Guidelines for Jordan Cheung
+# This file contains project management standards and workflows for the AI assistant to follow
+
+## Git & GitHub Workflow
+
+### Initial Project Setup
+
+1. **Git Configuration - Check Before Committing**
+   ```bash
+   # ALWAYS verify git config before first commit
+   git config user.name
+   git config user.email
+   
+   # If wrong account, set local config:
+   # Personal projects:
+   git config user.name "Jordan Cheung"
+   git config user.email "jcheung611@gmail.com"
+   
+   # Work projects (DoorDash):
+   git config user.name "jordan-cheung-dd"
+   git config user.email "jordan.cheung@doordash.com"
+   ```
+
+2. **Repository Creation Checklist**
+   - [ ] Create `.gitignore` FIRST (before git init)
+   - [ ] Create `.env.example` (never commit `.env`)
+   - [ ] Create comprehensive `README.md`
+   - [ ] Create `LICENSE` (MIT preferred)
+   - [ ] Create `.cursorrules` (this file!)
+   - [ ] Initialize git: `git init`
+   - [ ] Verify author config
+   - [ ] Make initial commit
+   - [ ] Create GitHub repo (user creates, AI guides)
+   - [ ] Push to GitHub
+
+3. **GitHub Authentication**
+   ```bash
+   # Check current auth status
+   gh auth status
+   
+   # Login if needed (user will do OAuth flow)
+   gh auth login
+   
+   # Setup git to use GitHub CLI
+   gh auth setup-git
+   ```
+
+### Commit Standards
+
+1. **Commit Frequency**
+   - Commit after each meaningful feature/change
+   - Don't let uncommitted work pile up
+   - Use descriptive commit messages
+
+2. **Commit Message Format**
+   ```
+   Brief summary (50 chars or less)
+   
+   Detailed explanation if needed:
+   - What changed
+   - Why it changed
+   - Any breaking changes
+   
+   Optional footer (refs, co-authors, etc.)
+   ```
+
+3. **When to Commit**
+   - ✅ After completing a feature
+   - ✅ After fixing a bug
+   - ✅ After major refactoring
+   - ✅ Before switching tasks
+   - ✅ After updating documentation
+   - ❌ Don't commit broken code
+   - ❌ Don't commit secrets/API keys
+
+### .gitignore Standards
+
+Always include:
+```gitignore
+# Environment
+.env
+*.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Output/Data (project-specific)
+output/
+data/generated_*
+*.csv
+*.json
+*.log
+*.txt
+
+# Cursor AI
+.cursor/
+terminals/
+
+# Secrets
+secrets.json
+credentials.json
+```
+
+## Documentation Standards
+
+### Files to Create During Development
+
+1. **README.md** - ALWAYS comprehensive
+   - Project overview with metrics
+   - Installation instructions
+   - Quick start guide
+   - Architecture overview
+   - Example usage
+   - Contributing guidelines (if applicable)
+   - License info
+   - Contact info
+
+2. **ARCHITECTURE.md** or **TECHNICAL_DETAILS.md**
+   - System design
+   - Key algorithms/approaches
+   - Performance characteristics
+   - Scaling considerations
+
+3. **DECISION_LOG.md** - Document major decisions
+   - What was decided
+   - What alternatives were considered
+   - Why this approach was chosen
+   - Trade-offs made
+
+4. **CHANGELOG.md** - Track major changes
+   - Version history
+   - Breaking changes
+   - New features
+   - Bug fixes
+
+5. **Project-Specific Docs**
+   - For this project: MODEL_EVALUATION_LOG.md, PARALLEL_PROCESSING_ARCHITECTURE.md
+   - Create as needed for complex subsystems
+
+### Documentation Principles
+
+1. **Write as You Build**
+   - Don't defer documentation
+   - Document decisions when they're made
+   - Update docs when code changes
+
+2. **Audience-Aware**
+   - README: For users/potential employers
+   - ARCHITECTURE: For developers/maintainers
+   - DECISION_LOG: For future you/team
+   - Comments: For code readers
+
+3. **Include Metrics**
+   - Performance numbers (speedup, latency)
+   - Cost analysis (actual $$ spent/saved)
+   - Accuracy/quality measurements
+   - Before/after comparisons
+
+## Code Organization Standards
+
+### Project Structure
+
+```
+project-name/
+├── .env.example          # Template for environment variables
+├── .gitignore           # Comprehensive ignore rules
+├── .cursorrules         # AI assistant guidelines (this file)
+├── README.md            # Main documentation
+├── LICENSE              # Open source license
+├── requirements.txt     # Python dependencies (or package.json)
+├── src/                 # or appropriate source folder
+│   ├── __init__.py
+│   ├── main.py
+│   └── modules/
+├── tests/               # Test files
+├── docs/                # Extended documentation (optional)
+├── scripts/             # Utility scripts
+├── data/                # Input data (gitignored if sensitive)
+└── output/              # Generated files (gitignored)
+```
+
+### File Naming Conventions
+
+- **Python**: `snake_case.py`
+- **Documentation**: `UPPER_CASE.md` for major docs, `lower-case.md` for guides
+- **Scripts**: `action_noun.py` (e.g., `scrape_trials.py`, `analyze_results.py`)
+- **Config**: `.lowercase` (e.g., `.env`, `.gitignore`)
+
+## Development Workflow
+
+### 1. Planning Phase
+- [ ] Understand requirements clearly
+- [ ] Break down into subtasks
+- [ ] Create TODO list with `todo_write` tool
+- [ ] Identify key decisions to document
+
+### 2. Implementation Phase
+- [ ] Write code incrementally
+- [ ] Test as you go
+- [ ] Document complex logic inline
+- [ ] Update architecture docs for major changes
+- [ ] Commit frequently with clear messages
+
+### 3. Testing Phase
+- [ ] Run basic functionality tests
+- [ ] Test edge cases
+- [ ] Document test results
+- [ ] Fix issues and re-test
+- [ ] Update docs with lessons learned
+
+### 4. Documentation Phase
+- [ ] Update README with examples
+- [ ] Add architecture diagrams if helpful
+- [ ] Document performance characteristics
+- [ ] Create setup instructions
+- [ ] Add troubleshooting guide
+
+### 5. Publishing Phase
+- [ ] Verify .gitignore (no secrets!)
+- [ ] Clean up temporary files
+- [ ] Write comprehensive commit message
+- [ ] Push to GitHub
+- [ ] Add topics/tags to repo
+- [ ] Consider writing blog post
+
+## Cost Consciousness
+
+### For AI/API Projects
+
+1. **Track Costs During Development**
+   - Log API calls and costs in real-time
+   - Calculate total cost at each major milestone
+   - Compare against baseline alternatives
+   - Document in decision log
+
+2. **Optimize Incrementally**
+   - Start with accuracy, then optimize cost
+   - Test cheaper models systematically
+   - Document cost/accuracy tradeoffs
+   - Show cost savings in documentation
+
+3. **Make Cost Visible**
+   - Include cost analysis in README
+   - Show $ per operation
+   - Compare to alternatives
+   - Celebrate savings!
+
+## Testing Standards
+
+### Test Coverage Expectations
+
+1. **Manual Testing**
+   - Test happy path thoroughly
+   - Test edge cases (empty input, large input, etc.)
+   - Test error handling
+   - Document test results
+
+2. **Automated Testing** (when appropriate)
+   - Unit tests for core logic
+   - Integration tests for workflows
+   - Use pytest for Python projects
+
+3. **Performance Testing**
+   - Measure latency/throughput
+   - Test at scale if relevant
+   - Document performance characteristics
+   - Compare before/after optimization
+
+## AI-Specific Guidelines
+
+### For Projects Using LLMs
+
+1. **Prompt Management**
+   - Store prompts in separate files (`prompts/`)
+   - Version control prompts
+   - Document prompt engineering decisions
+   - A/B test prompts systematically
+
+2. **Model Selection**
+   - Test multiple models with data
+   - Document accuracy/cost/speed tradeoffs
+   - Keep evaluation results
+   - Update when new models release
+
+3. **Error Handling**
+   - Implement retry logic for API calls
+   - Handle rate limits gracefully
+   - Save checkpoints for long-running jobs
+   - Log errors comprehensively
+
+## Multi-Account GitHub Management
+
+### Account Strategy
+
+1. **Personal Projects** (like this one)
+   - Use: jcheung611@gmail.com
+   - Repos under: jcheung611-byte
+   - Topics: personal interests, portfolio pieces
+
+2. **Work Projects** (DoorDash)
+   - Use: jordan.cheung@doordash.com
+   - Repos under: DoorDash org
+   - Keep proprietary
+
+### Authentication Flow
+
+```bash
+# One-time setup per account
+gh auth login  # Follow prompts for each account
+
+# Switching accounts (auto-detects from remote URL)
+# Just push/pull normally, GH CLI handles it
+
+# Manual switch if needed
+gh auth switch
+
+# Check current status
+gh auth status
+```
+
+### Per-Repo Configuration
+
+```bash
+# ALWAYS set local config for each repo
+cd /path/to/repo
+
+# For personal projects
+git config user.name "Jordan Cheung"
+git config user.email "jcheung611@gmail.com"
+
+# For work projects
+git config user.name "jordan-cheung-dd"
+git config user.email "jordan.cheung@doordash.com"
+
+# Verify before first commit
+git config user.email
+```
+
+## Communication Standards
+
+### When Asking User for Decisions
+
+1. **Present Options Clearly**
+   - Show 2-4 concrete options
+   - List pros/cons for each
+   - Recommend one with reasoning
+   - Make it easy to choose
+
+2. **Provide Context**
+   - Why does this decision matter?
+   - What are the tradeoffs?
+   - What's the impact of each choice?
+
+3. **Examples Over Abstractions**
+   - Show concrete examples
+   - Use actual code/data
+   - Visualize when helpful
+
+### Progress Updates
+
+1. **For Long-Running Tasks**
+   - Update every 5-10 minutes
+   - Show progress metrics
+   - Estimate time remaining
+   - Flag issues early
+
+2. **For Complex Tasks**
+   - Break down steps clearly
+   - Check off completed items
+   - Show current step
+   - Explain what's next
+
+## Error Handling Standards
+
+### When Things Go Wrong
+
+1. **Diagnose First**
+   - Read error messages carefully
+   - Check logs/output
+   - Identify root cause
+   - Don't guess and retry
+
+2. **Fix Properly**
+   - Explain what went wrong
+   - Explain the fix
+   - Apply the fix
+   - Verify it worked
+   - Document if it's a common issue
+
+3. **Learn from Errors**
+   - Update documentation
+   - Add to troubleshooting guide
+   - Prevent future occurrences
+
+## Quality Standards
+
+### Code Quality
+
+1. **Readability**
+   - Clear variable names
+   - Logical structure
+   - Appropriate comments
+   - Consistent style
+
+2. **Robustness**
+   - Handle edge cases
+   - Validate inputs
+   - Provide helpful error messages
+   - Fail gracefully
+
+3. **Maintainability**
+   - Modular design
+   - Don't repeat yourself (DRY)
+   - Document complex logic
+   - Use type hints (Python)
+
+### Documentation Quality
+
+1. **Comprehensive**
+   - Cover all major features
+   - Include examples
+   - Explain "why" not just "what"
+   - Keep updated
+
+2. **Accessible**
+   - Clear language
+   - Good formatting
+   - Visual aids when helpful
+   - Quick start guide
+
+3. **Professional**
+   - No typos
+   - Proper grammar
+   - Consistent tone
+   - Portfolio-worthy
+
+## Celebration Standards
+
+### What to Celebrate
+
+- ✨ Major features completed
+- 🚀 Significant performance improvements
+- 💰 Cost savings achieved
+- 🎯 Accuracy milestones reached
+- 📊 Project milestones hit
+- 🎉 First commit, first deploy, etc.
+
+### How to Celebrate
+
+- Use emojis (but not excessively)
+- Acknowledge the achievement
+- Quantify the win
+- Look forward to next steps
+
+---
+
+## Project-Specific Notes
+
+### Clinical Trials Project Learnings
+
+1. **Parallel Processing Works Great**
+   - 42x speedup with subprocess approach
+   - No GIL issues
+   - Each worker independent
+   - Rate limits are the constraint
+
+2. **Cost Optimization is Worth It**
+   - Test multiple models systematically
+   - 83% savings without sacrificing quality
+   - Hybrid approach (cheap + verification) works
+
+3. **Documentation is Differentiator**
+   - Comprehensive docs make projects stand out
+   - Decision logs show thinking process
+   - Metrics prove value
+
+---
+
+## Updates to These Guidelines
+
+When you (AI assistant) or Jordan learns something new:
+1. Update this file
+2. Commit with message: "Update .cursorrules: <what changed>"
+3. Apply to future projects
+
+**Last Updated:** December 19, 2024
+**Version:** 1.0
+**Author:** Jordan Cheung + AI Assistant
+
